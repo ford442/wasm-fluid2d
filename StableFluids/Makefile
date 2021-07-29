@@ -28,7 +28,7 @@ ${OBJECTS}: ${SOURCES}
 ${TARGET2}: ${SOURCES}
 	python3 ${SCRIPT}
 	cp ./gl_wrappers2d/* ./
-	emcc -o $@ $^ -std=c++11 -O3 -s WASM=1 -s USE_GLFW=3 -s FULL_ES2=1
+	emcc -o $@ $^ -std=c++11 -O3 -s WASM=1 -s USE_GLFW=3 -s FULL_ES2=1 -s ENVIRONMENT=web -s INITIAL_MEMORY=128mb -s ALLOW_MEMORY_GROWTH=0  -s MALLOC="emmalloc" -s FORCE_FILESYSTEM=1 -g0 -flto --closure 1
 	rm -f shaders.h gl_wrappers.*
 
 clean:
