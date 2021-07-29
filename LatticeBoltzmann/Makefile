@@ -54,7 +54,7 @@ ${OBJECTS}: ${SOURCES} ${IMGUI_SOURCES}
 
 ${WEB_TARGET}: ${SCRIPT} ${SOURCES} ${IMGUI_SOURCES}
 	python3 ${SCRIPT}
-	emcc -o $@ ${SOURCES} ${IMGUI_SOURCES} ${INCLUDE} -std=c++11 -O3 -s WASM=1 -s USE_GLFW=3 -s FULL_ES2=1
+	emcc -o $@ ${SOURCES} ${IMGUI_SOURCES} ${INCLUDE} -std=c++11 -O3 -s WASM=1 -s USE_GLFW=3 -s FULL_ES2=1 -s ENVIRONMENT=web -s INITIAL_MEMORY=128mb -s ALLOW_MEMORY_GROWTH=0  -s MALLOC="emmalloc" -s FORCE_FILESYSTEM=1 -g0 -flto --closure 1
 	rm -f shaders.hpp
 
 clean:
